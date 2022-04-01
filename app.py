@@ -27,7 +27,7 @@ db.create_all()
 toolbar = DebugToolbarExtension(app)
 
 @app.get('/')
-def index():
+def show_homepage():
     """List the pets from the database"""
 
     pets = Pet.query.all()
@@ -68,22 +68,18 @@ def add_pet():
 def edit_pet(pet_id):
     """Edit a pet using their pet id"""
 
-    form = EditPetForm()
     pet = Pet.query.get(pet_id)
-
+    form = EditPetForm(obj=pet)
+    
     if form.validate_on_submit():
 
-        photo_url = form.photo_url.data
-        notes= form.notes.data
-        available = form.available.data
-
-        pet.photo_url = photo_url
-        pet.notes = notes
-        pet.available = available
+        pet.photo_url = form.photo_url.data
+        pet.notes = form.notes.data
+        pet.available = form.available.data
 
         db.session.commit()
 
-        flash(f"Successfully edited pet: {pet.id}")
+        flash(f"Successfully edited pet: {pet.name}")
 
         return redirect("/")
 

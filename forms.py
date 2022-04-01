@@ -23,5 +23,5 @@ class EditPetForm(FlaskForm):
     """Form to edit an existing pet"""
 
     photo_url = URLField("Photo URL", validators=[Optional(),URL()])
-    notes = TextAreaField("Notes")
+    notes = TextAreaField("Notes", validators=[Optional()])
     available = BooleanField("Available")

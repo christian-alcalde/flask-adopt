@@ -11,6 +11,10 @@
       {% if pet.available %}
       <div><strong>Available</strong></div>
       {% endif %}
+      {% if not pet.available %}
+      <div><strong>Adopted</strong></div>
+      {% endif %}
+
     </ul>
     {%endfor%}
   </ol>
