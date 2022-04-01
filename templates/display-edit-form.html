@@ -1,24 +1,29 @@
 {% extends 'base.html' %} {%block content%}
 <div>
   <h1>{{pet.name}}</h1>
-  <img src="{pet.photo_url}" alt="Picture of my pet" />
+  <img src="{{pet.photo_url}}" alt="Picture of my pet" />
   <p>{{pet.age}}</p>
   <p>{{pet.species}}</p>
 </div>
 <div>
-  <form id="edit-pet-form" method="POST">
+  <form class="form-group" id="edit-pet-form" method="POST">
     {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
     'hidden' %}
 
     <p>
-      {{ field.label }} {{ field }} {% for error in field.errors %} {{ error }}
+      {{ field.label }}
+      <div class="form-control">
+        {{ field }}
+      </div>
+
+      {% for error in field.errors %} {{ error }}
       {% endfor %}
     </p>
 
     {% endfor %}
 
-    <button type="submit">Edit Pet</button>
-    <button><a href="/">Cancel</a></button>
+    <button class="btn btn-success" type="submit">Edit Pet</button>
+    <button class="btn btn-warning"><a href="/">Cancel</a></button>
   </form>
 </div>
 {% endblock %}

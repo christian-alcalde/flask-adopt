@@ -70,7 +70,7 @@ def edit_pet(pet_id):
 
     pet = Pet.query.get(pet_id)
     form = EditPetForm(obj=pet)
-    
+
     if form.validate_on_submit():
 
         pet.photo_url = form.photo_url.data
@@ -84,5 +84,8 @@ def edit_pet(pet_id):
         return redirect("/")
 
     else:
-        return render_template("display-edit-form.html", form=form, title=pet.name, pet=pet)
+        return render_template("display-edit-form.html",
+            form=form,
+            title=pet.name,
+            pet=pet)
 

@@ -2,24 +2,34 @@
 <p>{{msg}}</p>
 {%endfor%}
 
-<div>
+<div class="container">
   <ol>
     {% for pet in pets %}
-    <ul>
-      <p><a href="/{{pet.id}}">{{pet.name}}</a></p>
-      <img src="{{pet.photo_url}}" alt="Picture of my pet" />
-      {% if pet.available %}
-      <div><strong>Available</strong></div>
-      {% endif %}
-      {% if not pet.available %}
-      <div><strong>Adopted</strong></div>
-      {% endif %}
+    <div class="row">
+      <ul>
+        <div class="row-2">
+          <a href="/{{pet.id}}" class="btn btn-primary">{{pet.name}}</a>
+        </div>
 
-    </ul>
+        <img
+          class="img-thumbnail"
+          src="{{pet.photo_url}}"
+          alt="Picture of my pet"
+        />
+
+        <div class="row mb-3">
+          {% if pet.available %}
+          <div><strong>Available</strong></div>
+          {% endif %} {% if not pet.available %}
+          <div><strong>Adopted</strong></div>
+          {% endif %}
+        </div>
+      </ul>
+    </div>
     {%endfor%}
   </ol>
 
-  <button><a href="/add">Add New Pet</a></button>
+  <a class="btn btn-success" href="/add">Add New Pet</a>
 </div>
 
 {%endblock%}
